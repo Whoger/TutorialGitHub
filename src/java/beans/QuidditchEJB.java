@@ -5,7 +5,11 @@
  */
 package beans;
 
+import exceptions.QuidditchException;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 
 /**
  *
@@ -13,7 +17,21 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class QuidditchEJB {
+    @PersistenceUnit
+    EntityManagerFactory emf;
+    
+    public boolean loginUsuario(String nombreusuario, String password) throws QuidditchException {
+        EntityManager em = emf.createEntityManager();
+        
+        Empleado aux = em.find(Empleado.class, nombreusuario);
+        
+        if (aux != null && aux.getPassword().equalsIgnoreCase(password)) {
+            em.close();
+            return true;
+        } else {
+            em.close();
+            throw new QuidditchException("Nombre de usuario o password incorrectos");
+        }
+    }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 }
