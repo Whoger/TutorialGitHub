@@ -19,8 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JOSEP Mª
  */
-
-public class SeleccionarUser extends HttpServlet {
+public class SeleccionarTeamsServlet extends HttpServlet {
     @EJB QuidditchEJB miEJB;
 
     /**
@@ -34,9 +33,9 @@ public class SeleccionarUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        List<String> empleados = miEJB.selectAllNombreusuario();
-        request.setAttribute("empleados", empleados);
+         
+        List<String> teams = miEJB.selectAllTeams();
+        request.setAttribute("teams", teams);
         
         if ("Borrar usuario".equals(request.getParameter("borrarUsuario"))) {
             request.getRequestDispatcher("/borrarUsuario.jsp").forward(request,response);
@@ -47,7 +46,6 @@ public class SeleccionarUser extends HttpServlet {
         else if ("Crear una incidencia".equals(request.getParameter("insertarIncidencia"))) {
             request.getRequestDispatcher("/insertarIncidencia.jsp").forward(request,response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

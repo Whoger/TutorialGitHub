@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JOSEP Mª
  */
-
-public class SeleccionarUser extends HttpServlet {
+@WebServlet(name = "SeleccionarCoachesServlet", urlPatterns = {"/SeleccionarCoachesServlet"})
+public class SeleccionarCoachesServlet extends HttpServlet {
     @EJB QuidditchEJB miEJB;
 
     /**
@@ -34,20 +35,16 @@ public class SeleccionarUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        List<String> empleados = miEJB.selectAllNombreusuario();
-        request.setAttribute("empleados", empleados);
-        
+        List<String> coaches = miEJB.selectAllCoaches();
+        request.setAttribute("coaches", coaches);
+
         if ("Borrar usuario".equals(request.getParameter("borrarUsuario"))) {
-            request.getRequestDispatcher("/borrarUsuario.jsp").forward(request,response);
+            request.getRequestDispatcher("/borrarUsuario.jsp").forward(request, response);
+        } else if ("Modificar contra".equals(request.getParameter("cambiarContra"))) {
+            request.getRequestDispatcher("/cambiarContra.jsp").forward(request, response);
+        } else if ("Crear una incidencia".equals(request.getParameter("insertarIncidencia"))) {
+            request.getRequestDispatcher("/insertarIncidencia.jsp").forward(request, response);
         }
-        else if ("Modificar contra".equals(request.getParameter("cambiarContra"))) {
-            request.getRequestDispatcher("/cambiarContra.jsp").forward(request,response);
-        }
-        else if ("Crear una incidencia".equals(request.getParameter("insertarIncidencia"))) {
-            request.getRequestDispatcher("/insertarIncidencia.jsp").forward(request,response);
-        }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

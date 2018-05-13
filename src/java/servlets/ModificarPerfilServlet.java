@@ -6,9 +6,9 @@
 package servlets;
 
 import beans.QuidditchEJB;
+import exceptions.QuidditchException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +19,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JOSEP Mª
  */
+public class ModificarPerfilServlet extends HttpServlet {
 
-public class SeleccionarUser extends HttpServlet {
-    @EJB QuidditchEJB miEJB;
+    @EJB
+    QuidditchEJB miEJB;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,20 +35,32 @@ public class SeleccionarUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        List<String> empleados = miEJB.selectAllNombreusuario();
-        request.setAttribute("empleados", empleados);
-        
-        if ("Borrar usuario".equals(request.getParameter("borrarUsuario"))) {
-            request.getRequestDispatcher("/borrarUsuario.jsp").forward(request,response);
+        String nombre = (String) request.getSession(true).getAttribute("username");
+        String fullName = request.getParameter("fullName");
+        String password = request.getParameter("password");
+
+        Class<?> enclosingClass = getClass().getEnclosingClass();
+        if (enclosingClass != null) {
+            System.out.println(enclosingClass.getName());
+        } else {
+            System.out.println(getClass().getName());
         }
-        else if ("Modificar contra".equals(request.getParameter("cambiarContra"))) {
-            request.getRequestDispatcher("/cambiarContra.jsp").forward(request,response);
+
+        try {
+            if (enclosingClass.equals("Coaches")) {
+                miEJB.modificarPerfilCoaches(fullName, password, nombre);
+                request.setAttribute("status", "Se ha modificado correctamente el perfil");
+
+            } else if (enclosingClass.equals("Players")) {
+                miEJB.modificarPerfilPlayers(fullName, password, nombre);
+                request.setAttribute("status", "Se ha modificado correctamente el perfil");
+            } else if (enclosingClass.equals("Schools")) {
+                miEJB.modificarPerfilSchools(fullName, password, nombre);
+                request.setAttribute("status", "Se ha modificado correctamente el perfil");
+            }
+        } catch (QuidditchException ex) {
+            request.setAttribute("status", ex.getMessage());
         }
-        else if ("Crear una incidencia".equals(request.getParameter("insertarIncidencia"))) {
-            request.getRequestDispatcher("/insertarIncidencia.jsp").forward(request,response);
-        }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

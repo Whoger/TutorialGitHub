@@ -12,6 +12,22 @@
         <servlet-name>SeleccionarUser</servlet-name>
         <servlet-class>servlets.SeleccionarUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeleccionarTeamsServlet</servlet-name>
+        <servlet-class>servlets.SeleccionarTeamsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeleccionarPlayersServlet</servlet-name>
+        <servlet-class>servlets.SeleccionarPlayersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeleccionarSchoolsServlet</servlet-name>
+        <servlet-class>servlets.SeleccionarSchoolsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarPerfilServlet</servlet-name>
+        <servlet-class>servlets.ModificarPerfilServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -23,6 +39,26 @@
     <servlet-mapping>
         <servlet-name>SeleccionarUser</servlet-name>
         <url-pattern>/SeleccionarUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeleccionarTeamsServlet</servlet-name>
+        <url-pattern>/SeleccionarTeamsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeleccionarCoachesServlet</servlet-name>
+        <url-pattern>/SeleccionarCoachesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeleccionarPlayersServlet</servlet-name>
+        <url-pattern>/SeleccionarPlayersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeleccionarSchoolsServlet</servlet-name>
+        <url-pattern>/SeleccionarSchoolsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarPerfilServlet</servlet-name>
+        <url-pattern>/ModificarPerfilServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
