@@ -5,6 +5,9 @@
  */
 package beans;
 
+import entities.Coaches;
+import entities.Players;
+import entities.Schools;
 import exceptions.QuidditchException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,14 +20,40 @@ import javax.persistence.PersistenceUnit;
  */
 @Stateless
 public class QuidditchEJB {
+
     @PersistenceUnit
     EntityManagerFactory emf;
-    
-    public boolean loginUsuario(String nombreusuario, String password) throws QuidditchException {
+
+    public boolean loginSchool(String username, String password) throws QuidditchException {
         EntityManager em = emf.createEntityManager();
-        
-        Empleado aux = em.find(Empleado.class, nombreusuario);
-        
+
+        Schools aux = em.find(Schools.class, username);
+        if (aux != null && aux.getPassword().equalsIgnoreCase(password)) {
+            em.close();
+            return true;
+        } else {
+            em.close();
+            throw new QuidditchException("Nombre de usuario o password incorrectos");
+        }
+    }
+    
+    public boolean loginPlayer(String username, String password) throws QuidditchException {
+        EntityManager em = emf.createEntityManager();
+
+        Players aux = em.find(Players.class, username);
+        if (aux != null && aux.getPassword().equalsIgnoreCase(password)) {
+            em.close();
+            return true;
+        } else {
+            em.close();
+            throw new QuidditchException("Nombre de usuario o password incorrectos");
+        }
+    }
+    
+    public boolean loginCoach(String username, String password) throws QuidditchException {
+        EntityManager em = emf.createEntityManager();
+
+        Coaches aux = em.find(Coaches.class, username);
         if (aux != null && aux.getPassword().equalsIgnoreCase(password)) {
             em.close();
             return true;

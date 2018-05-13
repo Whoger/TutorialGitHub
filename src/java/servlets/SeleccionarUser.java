@@ -6,8 +6,9 @@
 package servlets;
 
 import beans.QuidditchEJB;
-import exceptions.QuidditchException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JOSEP Mª
  */
-public class LoginServlet extends HttpServlet {
 
-    @EJB
-    QuidditchEJB miEjb;
+public class SeleccionarUser extends HttpServlet {
+    @EJB QuidditchEJB miEJB;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,37 +34,21 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String tipoUser = request.getParameter("tipo");
-        String nombre = request.getParameter("nombre");
-        String passwd = request.getParameter("passwd");
-
-        try {
-            if (tipoUser.equals("escuela")) {
-                miEjb.loginSchool(nombre, passwd);
-            } else if (tipoUser.equals("entrenador")) {
-                miEjb.loginPlayer(nombre, passwd);
-            } else if (tipoUser.equals("jugador")) {
-                miEjb.loginCoach(nombre, passwd);
-            }
-            // Si el alta ha ido bien devolvemos msg ok
-            request.getSession(true).setAttribute("user", nombre);
-
-            if (tipoUser.equals("escuela")) {
-                response.sendRedirect(request.getContextPath() + "/menuEscuela.jsp");
-            } else if (tipoUser.equals("entrenador")) {
-                response.sendRedirect(request.getContextPath() + "/menuEntrenador.jsp");
-            } else if (tipoUser.equals("jugador")) {
-                response.sendRedirect(request.getContextPath() + "/menuJugador.jsp");
-            }
-
-        } catch (QuidditchException ex) {
-            // Devolvemos mensaje de la excepción a la vista
-            request.setAttribute("status", ex.getMessage());
-            // Redirigimos a la vista (final.jsp en este caso)
-            request.getRequestDispatcher("/final.jsp").forward(request, response);
+        
+        //creamos la lista de los empleados para poder seleccionarlo y la enviamos al jsp corresponiente
+        List<String> empleados = miEJB.selectAllNombreusuario();
+        request.setAttribute("empleados", empleados);
+        
+        if ("Borrar usuario".equals(request.getParameter("borrarUsuario"))) {
+            request.getRequestDispatcher("/borrarUsuario.jsp").forward(request,response);
         }
-
+        else if ("Modificar contra".equals(request.getParameter("cambiarContra"))) {
+            request.getRequestDispatcher("/cambiarContra.jsp").forward(request,response);
+        }
+        else if ("Crear una incidencia".equals(request.getParameter("insertarIncidencia"))) {
+            request.getRequestDispatcher("/insertarIncidencia.jsp").forward(request,response);
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -12,6 +12,19 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            String user = (String) session.getAttribute("user");
+        %>
+        <h1>Menú Escuela <%= user%></h1>
+
+
+        <form action="SeleccionarEmpleado">
+            <input type="submit" value="Crear Partido" name="crearPartido">
+        </form>
+
+        <form action="SeleccionarEmpleado">
+            <input type="submit" value="Borrar usuario" name="borrarUsuario">
+        </form>
+
     </body>
 </html>
