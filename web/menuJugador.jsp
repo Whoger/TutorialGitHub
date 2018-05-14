@@ -1,9 +1,3 @@
-<%-- 
-    Document   : menuJugador
-    Created on : 12-may-2018, 13:22:52
-    Author     : JOSEP Mª
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +6,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            String username = (String) session.getAttribute("username");
+            if (username != null) {
+                 %>
+                 <h1>No hay usuario validado</h1>
+                 <%
+                }else{
+                    %>
+                    <h1>Hola Jugador <%=username%></h1>
+                    
+                    <form action="modificacionPerfil.jsp">
+                        <input type="submit" value="Modificar Perfil" name="modificarPerfilPlayers">
+                    </form>
+                <% }
+    }%>
     </body>
 </html>
