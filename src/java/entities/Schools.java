@@ -73,6 +73,14 @@ public class Schools implements Serializable {
         this.password = password;
     }
 
+    public Schools(String fullName, String country, String username, String password) {
+        this.fullName = fullName;
+        this.country = country;
+        this.username = username;
+        this.password = password;
+    }
+    
+
     public String getFullName() {
         return fullName;
     }
