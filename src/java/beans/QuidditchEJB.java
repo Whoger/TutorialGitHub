@@ -26,6 +26,55 @@ public class QuidditchEJB {
 
     @PersistenceUnit
     EntityManagerFactory emf;
+    
+    
+    // ----------------------------------- Insert Users ----------------------------------------
+    
+    public void insertJugador(Players p) throws QuidditchException{
+        EntityManager em = emf.createEntityManager();
+        Players aux = em.find(Players.class, p.getUsername());
+        if (aux != null){
+            em.close();
+            throw new QuidditchException("El Jugador ya esta registrado en la base de datos");
+        }
+        em.persist(p);
+        em.close();
+    }
+    
+    
+        public void insertEntrenador(Coaches c) throws QuidditchException{
+        EntityManager em = emf.createEntityManager();
+        Coaches aux = em.find(Coaches.class, c.getUsername());
+        if (aux != null){
+            em.close();
+            throw new QuidditchException("El Entrenador ya esta registrado en la base de datos");
+        }
+        em.persist(c);
+        em.close();
+    }
+        
+        
+        public void insertEscuela(Schools s) throws QuidditchException{
+        EntityManager em = emf.createEntityManager();
+        Schools aux = em.find(Schools.class, s.getUsername());
+        if (aux != null){
+            em.close();
+            throw new QuidditchException("La Escuela ya esta registrado en la base de datos");
+        }
+        em.persist(s);
+        em.close();
+    }
+        
+        public void crearPartido(){
+        EntityManager em = emf.createEntityManager();
+                
+        
+        
+        
+        }
+
+    
+    
 
 // -----------------------------------Logins----------------------------------------
     public boolean loginSchool(String username, String password) throws QuidditchException {
