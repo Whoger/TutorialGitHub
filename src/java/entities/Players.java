@@ -98,6 +98,21 @@ public class Players implements Serializable {
         this.password = password;
     }
 
+    public Players(String fullName, String position, Date birthDate, String birthPlace, Short childFromMuggle, String broomStick, String username, String password, Teams team) {
+        this.fullName = fullName;
+        this.position = position;
+        this.birthDate = birthDate;
+        this.birthPlace = birthPlace;
+        this.childFromMuggle = childFromMuggle;
+        this.broomStick = broomStick;
+        this.username = username;
+        this.password = password;
+        this.team = team;
+    }
+
+    
+    
+    
     public String getFullName() {
         return fullName;
     }
