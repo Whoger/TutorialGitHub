@@ -49,8 +49,8 @@
         <servlet-class>servlets.InsertPlayersServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InsertSchoolsServlet</servlet-name>
-        <servlet-class>servlets.InsertSchoolsServlet</servlet-class>
+        <servlet-name>InsertEscuela</servlet-name>
+        <servlet-class>servlets.InsertEscuela</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>InsertCoachesServlet</servlet-name>
@@ -125,8 +125,8 @@
         <url-pattern>/InsertPlayersServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InsertSchoolsServlet</servlet-name>
-        <url-pattern>/InsertSchoolsServlet</url-pattern>
+        <servlet-name>InsertEscuela</servlet-name>
+        <url-pattern>/InsertEscuela</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>InsertCoachesServlet</servlet-name>
