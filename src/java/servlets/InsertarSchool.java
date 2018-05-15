@@ -5,11 +5,8 @@
  */
 package servlets;
 
-import beans.QuidditchEJB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JOSEP Mª
  */
-public class SeleccionarTeamsServlet extends HttpServlet {
-
-    @EJB
-    QuidditchEJB miEJB;
+public class InsertarSchool extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,16 +29,18 @@ public class SeleccionarTeamsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        List<String> teams = miEJB.selectAllTeams();
-        request.setAttribute("teams", teams);
-
-        if ("Eliminar Jugador".equals(request.getParameter("eliminarJugador"))) {
-            request.getRequestDispatcher("/deletePlayers.jsp").forward(request, response);
-        } else if ("Eliminar Equipo".equals(request.getParameter("eliminarEquipo"))) {
-            request.getRequestDispatcher("/deleteTeams.jsp").forward(request, response);
-        } else if ("Eliminar Entrenador".equals(request.getParameter("eliminarEntrenador"))) {
-            request.getRequestDispatcher("/deleteCoaches.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet InsertarSchool</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet InsertarSchool at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -86,4 +82,5 @@ public class SeleccionarTeamsServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
