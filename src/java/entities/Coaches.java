@@ -93,6 +93,14 @@ public class Coaches implements Serializable {
         this.password = password;
     }
 
+    public Coaches(String fullName, String username, String password) {
+        this.fullName = fullName;
+        this.username = username;
+        this.password = password;
+    }
+    
+    
+
     public String getFullName() {
         return fullName;
     }

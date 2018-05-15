@@ -30,7 +30,7 @@ public class InsertEscuela extends HttpServlet {
         
         try {
             miEJB.insertEscuela(s);
-            request.setAttribute("status", "Empleado registrado");
+            request.setAttribute("status", "Escuela registrada");
         } catch (QuidditchException ex) {
             request.setAttribute("status", ex.getMessage());
         }

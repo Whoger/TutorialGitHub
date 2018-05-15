@@ -43,7 +43,7 @@ public class InsertJugador extends HttpServlet {
         
         try {
             miEJB.insertJugador(e);
-            request.setAttribute("status", "Empleado registrado");
+            request.setAttribute("status", "Jugador registrado");
         } catch (QuidditchException ex) {
             request.setAttribute("status", ex.getMessage());
         }

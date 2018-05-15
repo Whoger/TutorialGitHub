@@ -39,14 +39,14 @@ public class QuidditchEJB {
         em.close();
     }
 
-    public void insertEntrenador(Coaches c) throws QuidditchException {
+    public void insertEntrenador(Coaches e) throws QuidditchException {
         EntityManager em = emf.createEntityManager();
-        Coaches aux = em.find(Coaches.class, c.getUsername());
+        Coaches aux = em.find(Coaches.class, e.getUsername());
         if (aux != null) {
             em.close();
-            throw new QuidditchException("El Entrenador ya esta registrado en la base de datos");
+            throw new QuidditchException("La Escuela ya esta registrado en la base de datos");
         }
-        em.persist(c);
+        em.persist(e);
         em.close();
     }
 

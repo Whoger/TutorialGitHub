@@ -5,11 +5,7 @@ import beans.QuidditchEJB;
 import entities.Coaches;
 import exceptions.QuidditchException;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -28,16 +24,13 @@ public class InsertEntrenador extends HttpServlet {
             throws ServletException, IOException, ParseException, QuidditchException {
         String username = request.getParameter("username");
         String password = request.getParameter("passw");
-        String fecha_nac = request.getParameter("fecha");
-        DateFormat df = new SimpleDateFormat("dd MM yyyy", Locale.ENGLISH);
-        Date fecha =  df.parse(fecha_nac);
         String fullname = request.getParameter("ncompleto");        
         
-        Coaches c = new Coaches(username, fullname, fecha, password);
+        Coaches c = new Coaches(fullname, username, password);
         
         try {
             miEJB.insertEntrenador(c);
-            request.setAttribute("status", "Empleado registrado");
+            request.setAttribute("status", "Entrenador registrado");
         } catch (QuidditchException ex) {
             request.setAttribute("status", ex.getMessage());
         }
