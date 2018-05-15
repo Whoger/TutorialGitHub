@@ -1,11 +1,15 @@
 
-package controller;
+package servlets;
 
 import beans.QuidditchEJB;
-import entities.Schools;
+import entities.Coaches;
 import exceptions.QuidditchException;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -15,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class InsertEscuela extends HttpServlet {
+public class InsertEntrenador extends HttpServlet {
 
     @EJB QuidditchEJB miEJB;
     
@@ -24,18 +28,21 @@ public class InsertEscuela extends HttpServlet {
             throws ServletException, IOException, ParseException, QuidditchException {
         String username = request.getParameter("username");
         String password = request.getParameter("passw");
-        String fullname = request.getParameter("nombre-completo");        
-        String pais = request.getParameter("pais");
-        Schools s = new Schools(fullname, pais, username, password);
+        String fecha_nac = request.getParameter("fecha");
+        DateFormat df = new SimpleDateFormat("dd MM yyyy", Locale.ENGLISH);
+        Date fecha =  df.parse(fecha_nac);
+        String fullname = request.getParameter("ncompleto");        
+        
+        Coaches c = new Coaches(username, fullname, fecha, password);
         
         try {
-            miEJB.insertEscuela(s);
+            miEJB.insertEntrenador(c);
             request.setAttribute("status", "Empleado registrado");
         } catch (QuidditchException ex) {
             request.setAttribute("status", ex.getMessage());
         }
         
-        request.getRequestDispatcher("respuesta/.jsp").forward(request, response);
+        request.getRequestDispatcher("/final.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

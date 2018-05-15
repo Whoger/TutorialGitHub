@@ -11,7 +11,6 @@ import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JOSEP Mª
  */
-@WebServlet(name = "SeleccionarCoachesServlet", urlPatterns = {"/SeleccionarCoachesServlet"})
 public class SeleccionarCoachesServlet extends HttpServlet {
     @EJB QuidditchEJB miEJB;
 
@@ -38,12 +36,12 @@ public class SeleccionarCoachesServlet extends HttpServlet {
         List<String> coaches = miEJB.selectAllCoaches();
         request.setAttribute("coaches", coaches);
 
-        if ("Borrar usuario".equals(request.getParameter("borrarUsuario"))) {
-            request.getRequestDispatcher("/borrarUsuario.jsp").forward(request, response);
-        } else if ("Modificar contra".equals(request.getParameter("cambiarContra"))) {
-            request.getRequestDispatcher("/cambiarContra.jsp").forward(request, response);
-        } else if ("Crear una incidencia".equals(request.getParameter("insertarIncidencia"))) {
-            request.getRequestDispatcher("/insertarIncidencia.jsp").forward(request, response);
+        if ("Eliminar Jugador".equals(request.getParameter("eliminarJugador"))) {
+            request.getRequestDispatcher("/deletePlayers.jsp").forward(request, response);
+        } else if ("Eliminar Equipo".equals(request.getParameter("eliminarEquipo"))) {
+            request.getRequestDispatcher("/deleteTeams.jsp").forward(request, response);
+        } else if ("Eliminar Entrenador".equals(request.getParameter("eliminarEntrenador"))) {
+            request.getRequestDispatcher("/deleteCoaches.jsp").forward(request, response);
         }
     }
 

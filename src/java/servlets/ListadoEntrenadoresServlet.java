@@ -6,6 +6,8 @@
 package servlets;
 
 import beans.QuidditchEJB;
+import entities.Coaches;
+import entities.Teams;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JOSEP Mª
  */
-public class SeleccionarPlayersServlet extends HttpServlet {
-    @EJB QuidditchEJB miEJB;
+public class ListadoEntrenadoresServlet extends HttpServlet {
+
+    @EJB
+    QuidditchEJB miEjb;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +37,13 @@ public class SeleccionarPlayersServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<String> players = miEJB.selectAllPlayers();
-        request.setAttribute("players", players);
 
-        if ("Eliminar Jugador".equals(request.getParameter("eliminarJugador"))) {
-            request.getRequestDispatcher("/deletePlayers.jsp").forward(request, response);
-        } else if ("Eliminar Equipo".equals(request.getParameter("eliminarEquipo"))) {
-            request.getRequestDispatcher("/deleteTeams.jsp").forward(request, response);
-        } else if ("Eliminar Entrenador".equals(request.getParameter("eliminarEntrenador"))) {
-            request.getRequestDispatcher("/deleteCoaches.jsp").forward(request, response);
-        }
+        List<Coaches> listaCoaches = miEjb.getListadoEntrenadores();
+        request.setAttribute("listaEntrenadores", listaCoaches);
+        request.getRequestDispatcher("/listadEntrenadores.jsp").forward(request, response);
+
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

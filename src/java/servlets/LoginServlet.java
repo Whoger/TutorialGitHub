@@ -35,36 +35,44 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String tipoUser = request.getParameter("tipo");
         String nombre = request.getParameter("nombre");
         String passwd = request.getParameter("passwd");
 
         try {
-            if (tipoUser.equals("escuela")) {
-                miEjb.loginSchool(nombre, passwd);
-            } else if (tipoUser.equals("entrenador")) {
-                miEjb.loginPlayer(nombre, passwd);
-            } else if (tipoUser.equals("jugador")) {
-                miEjb.loginCoach(nombre, passwd);
-            }
-            // Si el alta ha ido bien devolvemos msg ok
+            miEjb.loginPlayer(nombre, passwd);
             request.getSession(true).setAttribute("user", nombre);
 
-            if (tipoUser.equals("escuela")) {
-                response.sendRedirect(request.getContextPath() + "/menuEscuela.jsp");
-            } else if (tipoUser.equals("entrenador")) {
-                response.sendRedirect(request.getContextPath() + "/menuEntrenador.jsp");
-            } else if (tipoUser.equals("jugador")) {
-                response.sendRedirect(request.getContextPath() + "/menuJugador.jsp");
-            }
+            response.sendRedirect(request.getContextPath() + "/menuJudgador.jsp");
 
         } catch (QuidditchException ex) {
-            // Devolvemos mensaje de la excepción a la vista
             request.setAttribute("status", ex.getMessage());
-            // Redirigimos a la vista (final.jsp en este caso)
             request.getRequestDispatcher("/final.jsp").forward(request, response);
         }
 
+        // try {
+        //if (tipoUser.equals("escuela")) {
+        //   miEjb.loginSchool(nombre, passwd);
+        //  } else if (tipoUser.equals("jugador")) {
+        //  miEjb.loginPlayer(nombre, passwd);
+        //  } else if (tipoUser.equals("entrenador")) {
+        //      miEjb.loginCoach(nombre, passwd);
+        // }
+        // Si el alta ha ido bien devolvemos msg ok
+        //   request.getSession(true).setAttribute("user", nombre);
+
+        /*  if (tipoUser.equals("escuela")) {
+                response.sendRedirect(request.getContextPath() + "/menuEscuela.jsp");
+            } else if (tipoUser.equals("entrenador")) {
+                response.sendRedirect(request.getContextPath() + "/menuEntrenador.jsp");
+            } else if (tipoUser.equals("jugador")) {*/
+        //        response.sendRedirect(request.getContextPath() + "/menuJugador.jsp");
+        // }
+        // } catch (QuidditchException ex) {
+        // Devolvemos mensaje de la excepción a la vista
+//            request.setAttribute("status", ex.getMessage());
+//            // Redirigimos a la vista (final.jsp en este caso)
+//            request.getRequestDispatcher("/final.jsp").forward(request, response);
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

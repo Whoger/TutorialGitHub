@@ -1,48 +1,45 @@
-
-package controller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package servlets;
 
 import beans.QuidditchEJB;
-import entities.Coaches;
 import exceptions.QuidditchException;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-public class InsertEntrenador extends HttpServlet {
-
+/**
+ *
+ * @author JOSEP Mª
+ */
+public class DeletePlayerServlet extends HttpServlet {
     @EJB QuidditchEJB miEJB;
-    
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException, QuidditchException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("passw");
-        String fecha_nac = request.getParameter("fecha-nac");
-        DateFormat df = new SimpleDateFormat("dd MM yyyy", Locale.ENGLISH);
-        Date fecha =  df.parse(fecha_nac);
-        String fullname = request.getParameter("nombre-completo");        
-        
-        Coaches c = new Coaches(username, fullname, fecha, password);
-        
+            throws ServletException, IOException {
+         String playerSeleccionado = request.getParameter("seleccionarPlayer");
         try {
-            miEJB.insertEntrenador(c);
-            request.setAttribute("status", "Empleado registrado");
+            miEJB.borrarPlayers(playerSeleccionado);
+            request.setAttribute("status", "Player eliminado");
         } catch (QuidditchException ex) {
             request.setAttribute("status", ex.getMessage());
         }
-        
-        request.getRequestDispatcher("respuesta/.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,13 +54,7 @@ public class InsertEntrenador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(InsertEntrenador.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (QuidditchException ex) {
-            Logger.getLogger(InsertEntrenador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -77,13 +68,7 @@ public class InsertEntrenador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(InsertEntrenador.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (QuidditchException ex) {
-            Logger.getLogger(InsertEntrenador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

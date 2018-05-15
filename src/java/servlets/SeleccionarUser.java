@@ -35,8 +35,8 @@ public class SeleccionarUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        List<String> empleados = miEJB.selectAllNombreusuario();
-        request.setAttribute("empleados", empleados);
+      //  List<String> empleados = miEJB.selectAllNombreusuario();
+       // request.setAttribute("empleados", empleados);
         
         if ("Borrar usuario".equals(request.getParameter("borrarUsuario"))) {
             request.getRequestDispatcher("/borrarUsuario.jsp").forward(request,response);

@@ -1,16 +1,11 @@
 
-package controller;
+package servlets;
 
 import beans.QuidditchEJB;
-import entities.Players;
-import entities.Teams;
+import entities.Schools;
 import exceptions.QuidditchException;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -20,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class InsertJugador extends HttpServlet {
+public class InsertEscuela extends HttpServlet {
 
     @EJB QuidditchEJB miEJB;
     
@@ -29,26 +24,18 @@ public class InsertJugador extends HttpServlet {
             throws ServletException, IOException, ParseException, QuidditchException {
         String username = request.getParameter("username");
         String password = request.getParameter("passw");
-        String fecha_nac = request.getParameter("fecha-nac");
-        DateFormat df = new SimpleDateFormat("dd MM yyyy", Locale.ENGLISH);
-        Date fecha =  df.parse(fecha_nac);
-        String fullname = request.getParameter("nombre-completo");        
-        String muggle = request.getParameter("muggle");
-        short bool = Short.parseShort(muggle);
-        String lugar_nac = request.getParameter("lugar-nac");  
-        String posicion = request.getParameter("posicion");
-        String escoba = request.getParameter("escoba");
-        Teams equipo = new Teams("sin asignar");
-        Players e = new Players(fullname, posicion, fecha, lugar_nac, bool, escoba, username, password, equipo );
+        String fullname = request.getParameter("ncompleto");        
+        String pais = request.getParameter("pais");
+        Schools s = new Schools(fullname, pais, username, password);
         
         try {
-            miEJB.insertJugador(e);
+            miEJB.insertEscuela(s);
             request.setAttribute("status", "Empleado registrado");
         } catch (QuidditchException ex) {
             request.setAttribute("status", ex.getMessage());
         }
         
-        request.getRequestDispatcher("respuesta/.jsp").forward(request, response);
+        request.getRequestDispatcher("/final.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,9 +53,9 @@ public class InsertJugador extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
-            Logger.getLogger(InsertJugador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InsertEntrenador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (QuidditchException ex) {
-            Logger.getLogger(InsertJugador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InsertEntrenador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -86,9 +73,9 @@ public class InsertJugador extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
-            Logger.getLogger(InsertJugador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InsertEntrenador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (QuidditchException ex) {
-            Logger.getLogger(InsertJugador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InsertEntrenador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

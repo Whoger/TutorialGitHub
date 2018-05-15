@@ -7,7 +7,7 @@
     </head>
     <body>
         <%
-            String username = (String) session.getAttribute("username");
+            String username = (String) session.getAttribute("user");
             if (username != null) {
                  %>
                  <h1>No hay usuario validado</h1>

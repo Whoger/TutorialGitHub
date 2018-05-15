@@ -33,15 +33,15 @@ public class SeleccionarSchoolsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         List<String> schools = miEJB.selectAllPlayers();
+       List<String> schools = miEJB.selectAllPlayers();
         request.setAttribute("schools", schools);
 
-        if ("Borrar usuario".equals(request.getParameter("borrarUsuario"))) {
-            request.getRequestDispatcher("/borrarUsuario.jsp").forward(request, response);
-        } else if ("Modificar contra".equals(request.getParameter("cambiarContra"))) {
-            request.getRequestDispatcher("/cambiarContra.jsp").forward(request, response);
-        } else if ("Crear una incidencia".equals(request.getParameter("insertarIncidencia"))) {
-            request.getRequestDispatcher("/insertarIncidencia.jsp").forward(request, response);
+        if ("Eliminar Jugador".equals(request.getParameter("eliminarJugador"))) {
+            request.getRequestDispatcher("/deletePlayers.jsp").forward(request, response);
+        } else if ("Eliminar Equipo".equals(request.getParameter("eliminarEquipo"))) {
+            request.getRequestDispatcher("/deleteTeams.jsp").forward(request, response);
+        } else if ("Eliminar Entrenador".equals(request.getParameter("eliminarEntrenador"))) {
+            request.getRequestDispatcher("/deleteCoaches.jsp").forward(request, response);
         }
     }
 

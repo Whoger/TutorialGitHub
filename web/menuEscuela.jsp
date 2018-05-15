@@ -32,14 +32,18 @@
                     <form action="crearEquipo.jsp">
                         <input type="submit" value="Nueva Incidencia" name="crearEquipo"> 
                     </form>
-                    <form action="deleteEquipo.jsp">
+                    <form action="SeleccionarTeamsServlet">
                         <input type="submit" value="Eliminar Equipo" name="eliminarEquipo"> 
                     </form>
-                    <form action="deleteJugador.jsp">
+                    <form action="SeleccionarPlayersServlet">
                         <input type="submit" value="Eliminar Jugador" name="eliminarJugador"> 
                     </form>
-                    <form action="deleteEntrenador">
+                    <form action="SeleccionarCoachesServlet">
                         <input type="submit" value="Eliminar Entrenador" name="eliminarEntrenador"> 
+                    </form>
+                    </br>
+                    <form action="">
+                        <input type="submit" value="Lista Equipos" name="listadoEquipos"> 
                     </form>
                     </br>
                     <form action="asignarEquipoJugador">

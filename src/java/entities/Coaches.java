@@ -84,6 +84,15 @@ public class Coaches implements Serializable {
         this.password = password;
     }
 
+    public Coaches(String fullName, Date birthDate, String birthPlace, Short childFromMuggle, String username, String password) {
+        this.fullName = fullName;
+        this.birthDate = birthDate;
+        this.birthPlace = birthPlace;
+        this.childFromMuggle = childFromMuggle;
+        this.username = username;
+        this.password = password;
+    }
+
     public String getFullName() {
         return fullName;
     }

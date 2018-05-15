@@ -35,7 +35,7 @@ public class ModificarPerfilServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre = (String) request.getSession(true).getAttribute("username");
+        String nombre = (String) request.getSession(true).getAttribute("user");
         String fullName = request.getParameter("fullName");
         String password = request.getParameter("password");
 

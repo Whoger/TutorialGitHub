@@ -6,9 +6,9 @@
 package servlets;
 
 import beans.QuidditchEJB;
+import exceptions.QuidditchException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +19,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JOSEP Mª
  */
-public class SeleccionarPlayersServlet extends HttpServlet {
-    @EJB QuidditchEJB miEJB;
+public class DeleteTeamServlet extends HttpServlet {
+
+    @EJB
+    QuidditchEJB miEJB;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +35,15 @@ public class SeleccionarPlayersServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<String> players = miEJB.selectAllPlayers();
-        request.setAttribute("players", players);
-
-        if ("Eliminar Jugador".equals(request.getParameter("eliminarJugador"))) {
-            request.getRequestDispatcher("/deletePlayers.jsp").forward(request, response);
-        } else if ("Eliminar Equipo".equals(request.getParameter("eliminarEquipo"))) {
-            request.getRequestDispatcher("/deleteTeams.jsp").forward(request, response);
-        } else if ("Eliminar Entrenador".equals(request.getParameter("eliminarEntrenador"))) {
-            request.getRequestDispatcher("/deleteCoaches.jsp").forward(request, response);
+        String teamSeleccionado = request.getParameter("seleccionarTeam");
+        try {
+            miEJB.borrarTeams(teamSeleccionado);
+            request.setAttribute("status", "Team eliminado");
+        } catch (QuidditchException ex) {
+            request.setAttribute("status", ex.getMessage());
         }
+
+        request.getRequestDispatcher("/final.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

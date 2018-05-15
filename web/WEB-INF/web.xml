@@ -25,8 +25,56 @@
         <servlet-class>servlets.SeleccionarSchoolsServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SeleccionarCoachesServlet</servlet-name>
+        <servlet-class>servlets.SeleccionarSchoolsServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ModificarPerfilServlet</servlet-name>
         <servlet-class>servlets.ModificarPerfilServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePlayerServlet</servlet-name>
+        <servlet-class>servlets.DeletePlayerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCoachServlet</servlet-name>
+        <servlet-class>servlets.DeleteCoachServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTeamServlet</servlet-name>
+        <servlet-class>servlets.DeleteTeamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertPlayersServlet</servlet-name>
+        <servlet-class>servlets.InsertPlayersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertSchoolsServlet</servlet-name>
+        <servlet-class>servlets.InsertSchoolsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertCoachesServlet</servlet-name>
+        <servlet-class>servlets.InsertCoachesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginSchoolsServlet</servlet-name>
+        <servlet-class>servlets.LoginSchoolsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListaEquiposServlet</servlet-name>
+        <servlet-class>servlets.ListaEquiposServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoEntrenadoresServlet</servlet-name>
+        <servlet-class>servlets.ListadoEntrenadoresServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoEscuelasServlet</servlet-name>
+        <servlet-class>servlets.ListadoEscuelasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoJugadoresServlet</servlet-name>
+        <servlet-class>servlets.ListadoJugadoresServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -59,6 +107,50 @@
     <servlet-mapping>
         <servlet-name>ModificarPerfilServlet</servlet-name>
         <url-pattern>/ModificarPerfilServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePlayerServlet</servlet-name>
+        <url-pattern>/DeletePlayerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCoachServlet</servlet-name>
+        <url-pattern>/DeleteCoachServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTeamServlet</servlet-name>
+        <url-pattern>/DeleteTeamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertPlayersServlet</servlet-name>
+        <url-pattern>/InsertPlayersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertSchoolsServlet</servlet-name>
+        <url-pattern>/InsertSchoolsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertCoachesServlet</servlet-name>
+        <url-pattern>/InsertCoachesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginSchoolsServlet</servlet-name>
+        <url-pattern>/LoginSchoolsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaEquiposServlet</servlet-name>
+        <url-pattern>/ListaEquiposServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoEntrenadoresServlet</servlet-name>
+        <url-pattern>/ListadoEntrenadoresServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoEscuelasServlet</servlet-name>
+        <url-pattern>/ListadoEscuelasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoJugadoresServlet</servlet-name>
+        <url-pattern>/ListadoJugadoresServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

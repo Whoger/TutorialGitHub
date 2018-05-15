@@ -26,55 +26,45 @@ public class QuidditchEJB {
 
     @PersistenceUnit
     EntityManagerFactory emf;
-    
-    
+
     // ----------------------------------- Insert Users ----------------------------------------
-    
-    public void insertJugador(Players p) throws QuidditchException{
+    public void insertJugador(Players p) throws QuidditchException {
         EntityManager em = emf.createEntityManager();
         Players aux = em.find(Players.class, p.getUsername());
-        if (aux != null){
+        if (aux != null) {
             em.close();
             throw new QuidditchException("El Jugador ya esta registrado en la base de datos");
         }
         em.persist(p);
         em.close();
     }
-    
-    
-        public void insertEntrenador(Coaches c) throws QuidditchException{
+
+    public void insertEntrenador(Coaches c) throws QuidditchException {
         EntityManager em = emf.createEntityManager();
         Coaches aux = em.find(Coaches.class, c.getUsername());
-        if (aux != null){
+        if (aux != null) {
             em.close();
             throw new QuidditchException("El Entrenador ya esta registrado en la base de datos");
         }
         em.persist(c);
         em.close();
     }
-        
-        
-        public void insertEscuela(Schools s) throws QuidditchException{
+
+    public void insertEscuela(Schools s) throws QuidditchException {
         EntityManager em = emf.createEntityManager();
         Schools aux = em.find(Schools.class, s.getUsername());
-        if (aux != null){
+        if (aux != null) {
             em.close();
             throw new QuidditchException("La Escuela ya esta registrado en la base de datos");
         }
         em.persist(s);
         em.close();
     }
-        
-        public void crearPartido(){
-        EntityManager em = emf.createEntityManager();
-                
-        
-        
-        
-        }
 
-    
-    
+    public void crearPartido() {
+        EntityManager em = emf.createEntityManager();
+
+    }
 
 // -----------------------------------Logins----------------------------------------
     public boolean loginSchool(String username, String password) throws QuidditchException {
@@ -118,7 +108,7 @@ public class QuidditchEJB {
 // ---------------------------------------------------------------------------------
 
 // -----------------------------------Select Users----------------------------------------
-    public List<String> selectAllCoaches() throws QuidditchException {
+    public List<String> selectAllCoaches() {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("select c.username from Coaches c");
         List<String> coaches = q.getResultList();
@@ -126,7 +116,7 @@ public class QuidditchEJB {
         return coaches;
     }
 
-    public List<String> selectAllPlayers() throws QuidditchException {
+    public List<String> selectAllPlayers() {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("select p.username from Players p");
         List<String> coaches = q.getResultList();
@@ -134,7 +124,7 @@ public class QuidditchEJB {
         return coaches;
     }
 
-    public List<String> selectAllTeams() throws QuidditchException {
+    public List<String> selectAllTeams() {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("select t.fullName from Teams t");
         List<String> teams = q.getResultList();
@@ -142,7 +132,7 @@ public class QuidditchEJB {
         return teams;
     }
 
-    public List<String> selectAllSchools() throws QuidditchException {
+    public List<String> selectAllSchools() {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("select s.username from Schools s");
         List<String> schools = q.getResultList();
@@ -195,4 +185,64 @@ public class QuidditchEJB {
     }
 
 // ---------------------------------------------------------------------------------------
+// -----------------------------------Delete Users----------------------------------------
+    public void borrarPlayers(String players) throws QuidditchException {
+        EntityManager em = emf.createEntityManager();
+        Players aux = em.find(Players.class, players);
+        if (aux != null) {
+            em.remove(aux);
+            em.close();
+        } else {
+            em.close();
+            throw new QuidditchException("No existe ese usuario");
+
+        }
+    }
+
+    public void borrarTeams(String teams) throws QuidditchException {
+        EntityManager em = emf.createEntityManager();
+        Teams aux = em.find(Teams.class, teams);
+        if (aux != null) {
+            em.remove(aux);
+            em.close();
+        } else {
+            em.close();
+            throw new QuidditchException("No existe ese usuario");
+
+        }
+    }
+
+    public void borrarCoaches(String coaches) throws QuidditchException {
+        EntityManager em = emf.createEntityManager();
+        Coaches aux = em.find(Coaches.class, coaches);
+        if (aux != null) {
+            em.remove(aux);
+            em.close();
+        } else {
+            em.close();
+            throw new QuidditchException("No existe ese usuario");
+
+        }
+    }
+
+// ---------------------------------------------------------------------------------------
+    
+// -----------------------------------Listados----------------------------------------
+    public List<Schools> getListadoEscuelas() {
+        return emf.createEntityManager().createNamedQuery("Schools.findAll").getResultList();
+    }
+
+    public List<Teams> getListadoEquipos() {
+        return emf.createEntityManager().createNamedQuery("Teams.findAll").getResultList();
+    }
+
+    public List<Players> getListadoJugadores() {
+        return emf.createEntityManager().createNamedQuery("Players.findAll").getResultList();
+    }
+
+    public List<Coaches> getListadoEntrenadores() {
+        return emf.createEntityManager().createNamedQuery("Coaches.findAll").getResultList();
+    }
+// ---------------------------------------------------------------------------------------
+
 }
