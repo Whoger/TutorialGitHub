@@ -76,6 +76,10 @@
         <servlet-name>ListadoJugadoresServlet</servlet-name>
         <servlet-class>servlets.ListadoJugadoresServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertarSchool</servlet-name>
+        <servlet-class>servlets.InsertarSchool</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -121,18 +125,6 @@
         <url-pattern>/DeleteTeamServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InsertPlayersServlet</servlet-name>
-        <url-pattern>/InsertPlayersServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InsertSchoolsServlet</servlet-name>
-        <url-pattern>/InsertSchoolsServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InsertCoachesServlet</servlet-name>
-        <url-pattern>/InsertCoachesServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LoginSchoolsServlet</servlet-name>
         <url-pattern>/LoginSchoolsServlet</url-pattern>
     </servlet-mapping>
@@ -151,6 +143,10 @@
     <servlet-mapping>
         <servlet-name>ListadoJugadoresServlet</servlet-name>
         <url-pattern>/ListadoJugadoresServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertarSchool</servlet-name>
+        <url-pattern>/InsertarSchool</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
