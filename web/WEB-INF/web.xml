@@ -45,8 +45,8 @@
         <servlet-class>servlets.DeleteTeamServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InsertPlayersServlet</servlet-name>
-        <servlet-class>servlets.InsertPlayersServlet</servlet-class>
+        <servlet-name>InsertJugador</servlet-name>
+        <servlet-class>servlets.InsertJugador</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>InsertEscuela</servlet-name>
@@ -131,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>InsertEscuela</servlet-name>
         <url-pattern>/InsertEscuela</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertJugador</servlet-name>
+        <url-pattern>/InsertJugador</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>InsertEntrenador</servlet-name>

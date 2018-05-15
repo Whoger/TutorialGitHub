@@ -10,6 +10,9 @@ import entities.Players;
 import entities.Schools;
 import entities.Teams;
 import exceptions.QuidditchException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -35,6 +38,11 @@ public class QuidditchEJB {
             em.close();
             throw new QuidditchException("El Jugador ya esta registrado en la base de datos");
         }
+        p.setBirthDate(new Date());
+        p.setChildFromMuggle(new Short("1"));
+        p.setBirthPlace("");
+        p.setPosition("");
+        p.setBroomStick("");
         em.persist(p);
         em.close();
     }
@@ -44,8 +52,11 @@ public class QuidditchEJB {
         Coaches aux = em.find(Coaches.class, e.getUsername());
         if (aux != null) {
             em.close();
-            throw new QuidditchException("La Escuela ya esta registrado en la base de datos");
+            throw new QuidditchException("El entrenador ya esta registrado en la base de datos");
         }
+        e.setBirthDate(new Date());
+        e.setChildFromMuggle(new Short("1"));
+        e.setBirthPlace("");
         em.persist(e);
         em.close();
     }

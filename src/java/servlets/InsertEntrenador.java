@@ -6,6 +6,7 @@ import entities.Coaches;
 import exceptions.QuidditchException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -24,7 +25,10 @@ public class InsertEntrenador extends HttpServlet {
             throws ServletException, IOException, ParseException, QuidditchException {
         String username = request.getParameter("username");
         String password = request.getParameter("passw");
-        String fullname = request.getParameter("ncompleto");        
+        String fullname = request.getParameter("ncompleto");
+        Date fecha = null;
+        Short bool = null;
+        String lugar = null;
         
         Coaches c = new Coaches(fullname, username, password);
         

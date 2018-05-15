@@ -29,17 +29,9 @@ public class InsertJugador extends HttpServlet {
             throws ServletException, IOException, ParseException, QuidditchException {
         String username = request.getParameter("username");
         String password = request.getParameter("passw");
-        String fecha_nac = request.getParameter("fecha");
-        DateFormat df = new SimpleDateFormat("dd MM yyyy", Locale.ENGLISH);
-        Date fecha =  df.parse(fecha_nac);
         String fullname = request.getParameter("ncompleto");        
-        String muggle = request.getParameter("muggle");
-        short bool = Short.parseShort(muggle);
-        String lugar_nac = request.getParameter("lugarnaci");  
-        String posicion = request.getParameter("posicion");
-        String escoba = request.getParameter("escoba");
         Teams equipo = new Teams("sin asignar");
-        Players e = new Players(fullname, posicion, fecha, lugar_nac, bool, escoba, username, password, equipo );
+        Players e = new Players(fullname, username, password, equipo );
         
         try {
             miEJB.insertJugador(e);

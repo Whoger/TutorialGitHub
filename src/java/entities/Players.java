@@ -121,6 +121,14 @@ public class Players implements Serializable {
         this.team = team;
     }
 
+    public Players(String fullName, String username, String password, Teams team) {
+        this.fullName = fullName;
+        this.username = username;
+        this.password = password;
+        this.team = team;
+    }
+
+    
     
     
     
